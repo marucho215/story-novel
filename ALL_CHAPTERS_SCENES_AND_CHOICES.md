@@ -4,7 +4,7 @@
 >
 > 공통 원칙 (전 장 공통):
 > - 선택은 사고의 객관적 사실(facts)을 바꾸지 않는다 — 바뀌는 건 관계 수치·플래그·톤뿐이다.
-> - 1~3장 실제 대본 초안은 `chapters/CHAPTER_01_HWAYOUNG.md`, `chapters/CHAPTER_02_KANG_UNSIM.md`, `chapters/CHAPTER_03_EFFIE_MINOS.md`에 작성되어 있다. 4~7장 대사는 `VOICE_SHEETS.md`를 기준으로 다음 단계에서 채운다.
+> - 1~5장 실제 대본 초안은 `chapters/CHAPTER_01_HWAYOUNG.md`, `chapters/CHAPTER_02_KANG_UNSIM.md`, `chapters/CHAPTER_03_EFFIE_MINOS.md`, `chapters/CHAPTER_04_INAN.md`, `chapters/CHAPTER_05_KIM_UJU.md`에 작성되어 있다. 6~7장 대사는 `VOICE_SHEETS.md`를 기준으로 다음 단계에서 채운다.
 > - 근거 문서: `MASTER_DESIGN.md`, `INCIDENT_TIMELINE.md`, `EVIDENCE_FLOW.md`, `KNOWLEDGE_MATRIX.md`, `VOICE_SHEETS.md`.
 
 ---
