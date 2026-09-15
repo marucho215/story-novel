@@ -44,12 +44,21 @@ export default function App() {
   // 지금 씬에서 몇 번째 줄까지 왔는지는 "화면 연출" 상태라 세이브 데이터에는 넣지 않는다.
   // 다시 불러왔을 때 씬 맨 처음부터 다시 보여줘도 서사 진행에는 문제가 없기 때문이다.
   const [lineIndex, setLineIndex] = useState(0);
+  // 장 제목은 PPT 자막처럼 계속 떠 있지 않고, 장이 바뀔 때 잠깐 보였다가 사라진다.
+  const [showChapterTitle, setShowChapterTitle] = useState(true);
 
   useEffect(() => {
     saveGame(save);
   }, [save]);
 
   const chapter = CHAPTERS[save.progress.chapterId];
+
+  useEffect(() => {
+    setShowChapterTitle(true);
+    const timer = setTimeout(() => setShowChapterTitle(false), 2200);
+    return () => clearTimeout(timer);
+  }, [chapter.id]);
+
   const scene = getScene(chapter, save.progress.sceneId);
   const visibleChoices = getVisibleChoices(scene, save.story);
   const visibleLines = getVisibleLines(scene, save.story);
@@ -130,7 +139,7 @@ export default function App() {
   return (
     <div className={`game-screen${accentClass}`}>
       <header className="game-header">
-        <div className="chapter-title">
+        <div className={`chapter-title${showChapterTitle ? "" : " chapter-title--hidden"}`}>
           <span className="chapter-title__eyebrow">성아여고</span>
           <h1>{chapter.title}</h1>
         </div>

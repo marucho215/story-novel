@@ -19,13 +19,9 @@ export function DialogueBox({ line, onAdvance }: { line: Line; onAdvance?: () =>
       role={onAdvance ? "button" : undefined}
       tabIndex={onAdvance ? 0 : undefined}
     >
-      {line.speaker && <div className="speaker-name">{displayNameOf(line.speaker)}</div>}
+      {icon && <img className="speaker-symbol" src={icon} alt="" aria-hidden="true" />}
 
-      {icon && (
-        <div className="speaker-icon-wrap" aria-hidden="true">
-          <img className="speaker-icon" src={icon} alt="" />
-        </div>
-      )}
+      {line.speaker && <div className="speaker-name">{displayNameOf(line.speaker)}</div>}
 
       <p className={line.speaker ? "line line--dialogue" : "line line--narration"}>{line.text}</p>
 

@@ -97,6 +97,17 @@ button {
 
 .chapter-title {
   min-width: 0;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.chapter-title--hidden {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
 }
 
 .chapter-title__eyebrow {
@@ -145,21 +156,22 @@ button {
 }
 
 .novel-ui {
-  width: min(100%, 1000px);
+  width: min(86%, 880px);
   margin: 0 auto;
 }
 
 .dialogue-box {
   position: relative;
-  min-height: 176px;
-  padding: 38px 46px 34px;
-  border: 1px solid rgba(74, 84, 89, 0.22);
+  overflow: hidden;
+  min-height: 190px;
+  padding: 30px 42px 28px;
+  border: 1px solid rgba(74, 84, 89, 0.14);
   border-left: 4px solid var(--accent);
   border-radius: 4px 14px 14px 4px;
-  background: rgba(255, 254, 250, 0.94);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 250, 240, 0.86);
+  box-shadow: 0 10px 30px rgba(55, 63, 66, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .dialogue-box--advanceable {
@@ -167,7 +179,7 @@ button {
 }
 
 .dialogue-box--advanceable:hover {
-  background: rgba(255, 254, 250, 0.98);
+  background: rgba(255, 250, 240, 0.92);
 }
 
 .dialogue-box--advanceable:focus-visible {
@@ -177,6 +189,7 @@ button {
 
 .speaker-name {
   position: absolute;
+  z-index: 1;
   top: -18px;
   left: 28px;
   min-width: 132px;
@@ -192,6 +205,8 @@ button {
 }
 
 .line {
+  position: relative;
+  z-index: 1;
   margin: 0;
   white-space: pre-wrap;
   word-break: keep-all;
@@ -207,6 +222,7 @@ button {
 
 .advance-hint {
   position: absolute;
+  z-index: 1;
   right: 24px;
   bottom: 15px;
   color: var(--accent);
@@ -282,9 +298,13 @@ button {
     padding: 92px 14px 16px;
   }
 
+  .novel-ui {
+    width: 94%;
+  }
+
   .dialogue-box {
-    min-height: 164px;
-    padding: 34px 24px 32px;
+    min-height: 170px;
+    padding: 26px 22px 24px;
     border-left-width: 3px;
     border-radius: 3px 10px 10px 3px;
   }
@@ -307,7 +327,8 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .advance-hint,
-  .choice-button {
+  .choice-button,
+  .chapter-title {
     animation: none;
     transition: none;
   }
@@ -369,33 +390,27 @@ button {
   border-left-color: var(--char-accent, var(--accent));
 }
 
-/* 화자별 아이콘 배지 — DialogueBox.tsx의 .speaker-icon-wrap과 짝 */
-.speaker-icon-wrap {
+/* 화자 심볼 — 배지가 아니라 대사창 오른쪽에 흐릿하게 깔리는 워터마크.
+   UI 버튼처럼 보이면 안 되므로 배경·테두리·그림자를 일절 넣지 않는다. */
+.speaker-symbol {
   position: absolute;
-  top: 14px;
-  right: 22px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--paper-solid);
-  box-shadow: 0 4px 14px rgba(55, 63, 66, 0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.speaker-icon {
-  width: 70%;
-  height: 70%;
+  z-index: 0;
+  top: 4px;
+  right: 24px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
+  opacity: 0.1;
+  filter: saturate(0.8) brightness(1.05);
+  pointer-events: none;
+  user-select: none;
 }
 
 @media (max-width: 640px) {
-  .speaker-icon-wrap {
-    width: 42px;
-    height: 42px;
-    top: 10px;
+  .speaker-symbol {
+    width: 84px;
+    height: 84px;
+    top: 2px;
     right: 14px;
   }
 }
