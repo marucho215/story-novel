@@ -1,0 +1,134 @@
+:root {
+  --text: #2a2730;
+  --text-dim: #6b6375;
+  --bg: #fbfaf7;
+  --panel-bg: #ffffff;
+  --border: #e2e0e5;
+  --accent: #7c3aed;
+
+  font: 18px/1.7 system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e5e3e8;
+    --text-dim: #9ca3af;
+    --bg: #16171d;
+    --panel-bg: #1f2028;
+    --border: #2e303a;
+    --accent: #c084fc;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100svh;
+  padding: 24px 20px 60px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.game-header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.dialogue-box {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.line--narration {
+  color: var(--text-dim);
+}
+
+.speaker {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.choice-list,
+.continue-button-row {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choice-button,
+.continue-button,
+.restart-button {
+  font: inherit;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.choice-button:hover,
+.continue-button:hover,
+.restart-button:hover {
+  border-color: var(--accent);
+}
+
+.continue-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.restart-button {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+.chapter-end {
+  margin-top: 20px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.debug-panel {
+  margin-top: 40px;
+  font-size: 13px;
+  color: var(--text-dim);
+  border-top: 1px dashed var(--border);
+  padding-top: 12px;
+}
+
+.debug-table {
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.debug-table th,
+.debug-table td {
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  text-align: left;
+}
