@@ -11,7 +11,6 @@ import { applyChoice, getNextSceneId, getScene, getVisibleChoices, getVisibleLin
 import { loadGame, saveGame } from "./engine/saveLoad";
 import { ChoiceList } from "./ui/components/ChoiceList";
 import { DialogueBox } from "./ui/components/DialogueBox";
-import { RelationshipDebugPanel } from "./ui/components/RelationshipDebugPanel";
 import type { GameSave } from "./types/story";
 import type { ChapterScript, Choice } from "./types/script";
 
@@ -62,7 +61,6 @@ export default function App() {
   const isLastLine = lineIndex >= visibleLines.length - 1;
   const currentLine = visibleLines[lineIndex];
   const showChoices = isLastLine && visibleChoices.length > 0;
-  const isStoryEnd = isLastLine && isLastSceneOfChapter && !nextChapter;
   const canAdvance =
     !isLastLine || (isLastSceneOfChapter ? !!nextChapter : !!nextSceneId);
 
@@ -96,8 +94,8 @@ export default function App() {
 
   // 엔터/스페이스로도 대사를 넘길 수 있게 한다. 대화 상자에 포커스가 있을 때만
   // 반응하면 클릭 없이는 쓸모가 없으니, 페이지 전체에서 듣는다. 다만 버튼이나
-  // 디버그 패널의 <summary> 등 자체적으로 엔터/스페이스에 반응하는 요소 위에서는
-  // 끼어들지 않는다 — 안 그러면 선택지를 고르면서 동시에 대사도 넘어가 버린다.
+  // <summary> 등 자체적으로 엔터/스페이스에 반응하는 요소 위에서는 끼어들지
+  // 않는다 — 안 그러면 선택지를 고르면서 동시에 대사도 넘어가 버린다.
   //
   // 선택지가 여러 개 떠 있을 때는 이 리스너를 아예 꺼둔다. 골라야 할 선택지가
   // 있는 순간에는 반드시 마우스로 직접 클릭하게 하려는 것이라, canAdvance가
@@ -138,24 +136,8 @@ export default function App() {
           {showChoices && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
 
           <DialogueBox line={currentLine} onAdvance={canAdvance ? handleAdvance : undefined} />
-
-          {isStoryEnd && <p className="chapter-end">— 옮겨 적은 이야기는 여기까지입니다 —</p>}
         </div>
       </main>
-
-      <details className="debug-panel">
-        <summary>디버그</summary>
-        <div className="debug-panel__body">
-          <RelationshipDebugPanel relationships={save.story.relationships} />
-          <ol>
-            {save.story.history.map((record, index) => (
-              <li key={index}>
-                {record.chapterId} / {record.sceneId} / {record.choiceId}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </details>
     </div>
   );
 }

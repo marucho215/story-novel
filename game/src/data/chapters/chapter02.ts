@@ -6,7 +6,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter02: ChapterScript = {
   id: "chapter02_kang_unsim",
-  title: "2장 강운심 — 끄지 않은 것",
+  title: "2장 강운심 끄지 않은 것",
   pointOfView: "kang_unsim",
   firstSceneId: "ch2_s01",
   scenes: {
@@ -82,7 +82,7 @@ export const chapter02: ChapterScript = {
         { text: "운심은 대화창을 열지 않고 다음 알림으로 넘겼다." },
         { text: "운심은 반사적으로 공유 버튼을 눌렀다." },
         { text: "해명 문장을 쓰는 칸이 열렸다." },
-        { text: "지금 퍼지는 영상은 앞뒤가 잘린—" },
+        { text: "지금 퍼지는 영상은 앞뒤가 잘린..." },
         { text: "거즈가 감긴 엄지가 화면 위에서 멈췄다." },
         { text: "앞뒤가 전부 들어간 영상은 자기 휴대폰 안에 있었다." },
         { text: "운심은 문장을 지우고 창을 닫았다." },

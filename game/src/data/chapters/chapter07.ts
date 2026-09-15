@@ -10,7 +10,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter07: ChapterScript = {
   id: "chapter07_ensemble",
-  title: "7장 전원 교차 — 남겨진 기록",
+  title: "7장 전원 교차 남겨진 기록",
   pointOfView: "effie_minos",
   firstSceneId: "ch7_s01",
   scenes: {
@@ -528,7 +528,7 @@ export const chapter07: ChapterScript = {
         { text: "같은 날 오전 10시 12분, 방송실." },
         { text: "나희는 홀로그램 창 열두 개를 양손으로 나눠 넘겼다." },
         { text: "가운데에는 선도부 제출함에 꽂혀 있던 문서철과 같은 제목이 떠 있었다." },
-        { text: "`개별 사안 — 세이야 히쿠도.`" },
+        { text: "`개별 사안: 세이야 히쿠도.`" },
         { text: "시스템 상단의 판정권자는 `제갈 나희`, 토스케의 계정은 `이해충돌로 열람 제외` 상태였다." },
         { text: "나희가 분산 감시 기록의 시각표를 펼쳤다." },
         { text: "히쿠도의 장비 반입, 사전 경고, 사고 당일 능력 사용이 서로 다른 화면에 붙었다." },
@@ -851,7 +851,7 @@ export const chapter07: ChapterScript = {
       id: "ch7_s07_full_disclosure",
       lines: [
         { text: "사고 일주일 뒤 오전 8시, 교내 사건기록부에 새 항목이 게시됐다." },
-        { text: "`남쪽 연결계단 사망 사고 — 조사 자료 공개본.`" },
+        { text: "`남쪽 연결계단 사망 사고: 조사 자료 공개본.`" },
         { text: "첫 줄에는 피해 학생 한 명이 사망했다는 사실이 적혔다." },
         { text: "이름과 의료 정보는 가려졌고, 그 아래로 사전 보고서와 행정 처리 경로, 방송 전사본, 관계자 진술이 작성자 이름과 함께 이어졌다." },
         { text: "운심의 휴대폰에 알림이 몰렸다." },
@@ -863,7 +863,7 @@ export const chapter07: ChapterScript = {
         { text: "이난은 지도부실 출석부 대신 후속 조치표를 문에 붙였다." },
         { text: "다섯 사람은 각자 맡은 칸에 귀환 예정 시각을 적었다." },
         { text: "에피가 마지막으로 자기 시각을 적고 펜 뚜껑을 닫았다." },
-        { text: "ENDING — 전면 공개: 이름을 남기는 사람들" },
+        { text: "ENDING · 전면 공개: 이름을 남기는 사람들" },
       ],
     },
 
@@ -871,7 +871,7 @@ export const chapter07: ChapterScript = {
       id: "ch7_s07_selective_disclosure",
       lines: [
         { text: "사고 일주일 뒤 오전 8시, 교내 사건기록부에 조사 결과 요약이 게시됐다." },
-        { text: "`남쪽 연결계단 사망 사고 — 공개 범위 제한본.`" },
+        { text: "`남쪽 연결계단 사망 사고: 공개 범위 제한본.`" },
         { text: "피해 학생의 이름, 이동 경로, 의료 기록은 공개본에서 제외됐다." },
         { text: "사전 보고가 방치된 과정과 방송·능력 출력의 책임, 마근아의 경고 전달 실패는 항목별로 남았다." },
         { text: "공개되지 않은 자료 목록도 문서 끝에 표시됐다." },
@@ -882,7 +882,7 @@ export const chapter07: ChapterScript = {
         { speaker: "kang_unsim", text: "책임은 안 가렸어." },
         { text: "지도부실 문에는 활동 정지 안내와 재심 일정이 나란히 붙었다." },
         { text: "화영은 두 종이가 떨어지지 않도록 모서리에 새 테이프를 눌러 붙였다." },
-        { text: "ENDING — 선택적 공개: 가려야 할 이름" },
+        { text: "ENDING · 선택적 공개: 가려야 할 이름" },
       ],
     },
 
@@ -900,7 +900,7 @@ export const chapter07: ChapterScript = {
         { text: "다섯 사람은 지도부실에서 해체 심사 출석 통지를 확인했다." },
         { text: "이난이 `전원 출석`을 누르자 각자의 단말기에 같은 일정이 등록됐다." },
         { text: "에피는 참석자 목록에서 다섯 이름을 확인한 뒤 화면을 껐다." },
-        { text: "ENDING — 공동 책임 인정: 따로 적은 한 문장" },
+        { text: "ENDING · 공동 책임 인정: 따로 적은 한 문장" },
       ],
     },
 
@@ -922,7 +922,7 @@ export const chapter07: ChapterScript = {
         { text: "에피의 조리개 동공이 좁아지기 전에 손바닥으로 카오의 눈을 덮었다." },
         { speaker: "effie_minos", text: "이건 갖지 마." },
         { text: "에피는 빈 출석부에 자기 이름을 적지 않고 지도부실 문을 닫았다." },
-        { text: "ENDING — 책임 전가 및 관계 붕괴: 남은 부서" },
+        { text: "ENDING · 책임 전가 및 관계 붕괴: 남은 부서" },
       ],
     },
   },

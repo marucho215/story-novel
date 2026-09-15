@@ -3,7 +3,6 @@
   --ink-soft: #687178;
   --paper: #fbfaf6;
   --paper-solid: #fffefa;
-  --line: rgba(67, 78, 85, 0.18);
   --accent: #60788a;
   --accent-deep: #455d6d;
   --accent-soft: #e7edf0;
@@ -40,12 +39,8 @@ body {
   overflow-x: hidden;
 }
 
-button,
-summary {
-  font: inherit;
-}
-
 button {
+  font: inherit;
   color: inherit;
 }
 
@@ -277,67 +272,6 @@ button {
   outline: none;
 }
 
-.chapter-end {
-  width: fit-content;
-  margin: 14px auto 0;
-  padding: 7px 12px;
-  border-radius: 4px;
-  background: rgba(255, 254, 250, 0.7);
-  color: var(--ink-soft);
-  font-size: 13px;
-  text-align: center;
-}
-
-.debug-panel {
-  position: absolute;
-  z-index: 20;
-  right: 22px;
-  top: 76px;
-  width: min(340px, calc(100% - 44px));
-  color: #5d666b;
-  font-size: 12px;
-}
-
-.debug-panel > summary {
-  width: fit-content;
-  margin-left: auto;
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.debug-panel[open] > summary {
-  opacity: 0.85;
-}
-
-.debug-panel__body {
-  margin-top: 8px;
-  max-height: 42svh;
-  overflow: auto;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 254, 250, 0.96);
-  box-shadow: 0 12px 30px rgba(55, 63, 66, 0.12);
-}
-
-.debug-panel ol {
-  margin-bottom: 0;
-  padding-left: 20px;
-}
-
-.debug-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-}
-
-.debug-table th,
-.debug-table td {
-  border: 1px solid var(--line);
-  padding: 4px 6px;
-  text-align: left;
-}
-
 @media (max-width: 640px) {
   .game-header {
     width: calc(100% - 28px);
@@ -368,11 +302,6 @@ button {
 
   .choice-button {
     padding: 12px 14px;
-  }
-
-  .debug-panel {
-    top: 66px;
-    right: 14px;
   }
 }
 

@@ -6,7 +6,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter04: ChapterScript = {
   id: "chapter04_inan",
-  title: "4장 이난 — 제출일",
+  title: "4장 이난 제출일",
   pointOfView: "inan",
   firstSceneId: "ch4_s01",
   scenes: {
@@ -98,7 +98,7 @@ export const chapter04: ChapterScript = {
         { text: "활동 정지 통지서 아래에 얇은 초록색 문서철 하나가 끼어 있었다." },
         { text: "표지에는 `남쪽 연결계단`이라고 적혀 있었다." },
         { text: "같은 칸 한쪽에는 더 얇은 문서철이 꽂혀 있었다." },
-        { text: "표지에는 `개별 사안 — 세이야 히쿠도`와 `담당: 제갈 나희`가 적혀 있었다." },
+        { text: "표지에는 `개별 사안: 세이야 히쿠도`와 `담당: 제갈 나희`가 적혀 있었다." },
         { text: "이난이 수령할 문서가 아니었다." },
         { text: "손대지 않고 그대로 두었다." },
         { text: "통지서와 문서철은 종이 크기부터 달랐다." },
@@ -159,13 +159,13 @@ export const chapter04: ChapterScript = {
     ch4_s03: {
       id: "ch4_s03",
       lines: [
-        { text: "`SAF-003 — 사고 3일 전, 09:00 제출.`" },
+        { text: "`SAF-003: 사고 3일 전, 09:00 제출.`" },
         { text: "사고 사흘 전이었다." },
         { text: "이난은 두 번째 장을 그 옆에 놓았다." },
-        { text: "`SAF-002 — 사고 14일 전, 16:00 제출.`" },
+        { text: "`SAF-002: 사고 14일 전, 16:00 제출.`" },
         { text: "사고 2주 전이었다." },
         { text: "마지막으로 시설 보고서를 펼쳤다." },
-        { text: "`FAC-001 — 사고 21일 전, 15:40 제출.`" },
+        { text: "`FAC-001: 사고 21일 전, 15:40 제출.`" },
         { text: "사고 3주 전이었다." },
         { text: "이난은 문서 세 장을 제출일 순서로 다시 놓았다." },
         { text: "맨 왼쪽의 난간은 아직 붙어 있었고, 맨 오른쪽의 보고서에는 `즉시 출입 통제 필요`가 적혀 있었다." },

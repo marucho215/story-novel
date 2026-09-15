@@ -7,7 +7,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter05: ChapterScript = {
   id: "chapter05_kim_uju",
-  title: "5장 김우주 — 읽기 전용",
+  title: "5장 김우주 읽기 전용",
   pointOfView: "kim_uju",
   firstSceneId: "ch5_s01",
   scenes: {
@@ -188,7 +188,7 @@ export const chapter05: ChapterScript = {
         { speaker: "kim_uju", text: "사람 말고." },
         { text: "가발 쓴 얼굴이 사라졌다." },
         { text: "우주는 검증 목록의 첫 칸에 표시했다." },
-        { text: "`보고서 3종 등록 시각 — 일치.`" },
+        { text: "`보고서 3종 등록 시각: 일치.`" },
         { text: "그 아래에는 아직 세 칸이 남아 있었다." },
         { text: "`순찰 기록.`" },
         { text: "`처리 경로.`" },
@@ -235,7 +235,7 @@ export const chapter05: ChapterScript = {
         { text: "욕을 쓰려다 지웠다." },
         { text: "안전 경고를 했다는 사실과, 그 경고가 상대 화면에서 평소 단속과 구별되지 않았다는 사실은 동시에 남았다." },
         { text: "우주는 검증 목록의 두 번째 칸에 표시했다." },
-        { text: "`순찰 빈도 증가 및 사전 경고 — 일치.`" },
+        { text: "`순찰 빈도 증가 및 사전 경고: 일치.`" },
       ],
       next: "ch5_s04",
     },
@@ -245,7 +245,7 @@ export const chapter05: ChapterScript = {
       lines: [
         { text: "처리 경로를 누르자 문서 세 건이 서로 다른 화면으로 흩어졌다." },
         { text: "화면 구석에 검색 조건과 맞지 않는 열람 기록 한 줄이 떴다." },
-        { text: "`제갈 나희 — 개별 사안 열람.`" },
+        { text: "`제갈 나희: 개별 사안 열람.`" },
         { text: "우주는 관련 없는 결과를 닫았다." },
         { text: "`FAC-001`은 시설관리팀의 일반 유지보수 대기열로 들어가 있었다." },
         { text: "분류: 경미한 마모" },
@@ -280,7 +280,7 @@ export const chapter05: ChapterScript = {
         { text: "학교는 받았다." },
         { text: "아무도 전달이 끝났는지 확인하지 않았다." },
         { text: "우주는 검증 목록의 세 번째 칸을 표시했다." },
-        { text: "`처리 경로 — 분류·관할·인수 과정에서 정지.`" },
+        { text: "`처리 경로: 분류·관할·인수 과정에서 정지.`" },
         { text: "교장실 조사망에 검증 결과를 전송하자 흰 커서가 두 차례 깜빡였다." },
         { speaker: "toske", text: "확인했다." },
         { speaker: "toske", text: "네가 대조한 사본은 내가 봉인한 원본과 일치한다." },
@@ -328,7 +328,7 @@ export const chapter05: ChapterScript = {
         { text: "빈 항목에 추측을 채워 넣을 수는 없었다." },
         { text: "우주가 확인할 수 있는 것은 방송 반응, `[화제]`의 출력, 붕괴 시각이 같은 방향으로 이어졌다는 사실뿐이었다." },
         { text: "검증 목록의 마지막 칸이 채워졌다." },
-        { text: "`방송 반응과 능력 출력 상승 — 붕괴 시각과 일치.`" },
+        { text: "`방송 반응과 능력 출력 상승: 붕괴 시각과 일치.`" },
       ],
       next: "ch5_s06",
     },

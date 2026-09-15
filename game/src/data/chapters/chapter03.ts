@@ -6,7 +6,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter03: ChapterScript = {
   id: "chapter03_effie_minos",
-  title: "3장 에피 미노스 — 내일도 여기",
+  title: "3장 에피 미노스 내일도 여기",
   pointOfView: "effie_minos",
   firstSceneId: "ch3_s01",
   scenes: {
