@@ -88,6 +88,7 @@ export default function App() {
   }
 
   function handleRestart() {
+    if (!window.confirm("지금까지의 진행을 모두 지우고 처음부터 시작할까요?")) return;
     setSave(createNewGame());
     setLineIndex(0);
   }
