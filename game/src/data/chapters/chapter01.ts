@@ -82,7 +82,7 @@ export const chapter01: ChapterScript = {
         {
           id: "ch1_a1_mediate",
           label: "둘 사이에 선다",
-          next: "ch1_s03_common",
+          next: "ch1_s03_a1",
           effects: [
             { from: "hwayoung", to: "magun_a", stat: "trust", amount: 5 },
             { from: "hwayoung", to: "kang_unsim", stat: "guard", amount: 5 },
@@ -93,15 +93,69 @@ export const chapter01: ChapterScript = {
         {
           id: "ch1_a2_crowd_control",
           label: "학생들을 뒤로 물린다",
-          next: "ch1_s03_common",
+          next: "ch1_s03_a2",
         },
         {
           id: "ch1_a3_root_cause",
           label: "히쿠도의 무대를 끊는다",
-          next: "ch1_s03_common",
+          next: "ch1_s03_a3",
           effects: [{ from: "hwayoung", to: "hikudo", stat: "guard", amount: 5 }],
         },
       ],
+    },
+
+    // 선택지별 조건부 본문 (대본의 "조건부 본문 A1/A2/A3"). 셋 다 ch1_s03_common으로 합류한다.
+    ch1_s03_a1: {
+      id: "ch1_s03_a1",
+      lines: [
+        {
+          text: "화영은 세그웨이 앞바퀴를 한 손으로 밀고 운심의 어깨를 다른 손으로 밀었다. 둘 사이에 자기 몸 하나가 들어갈 자리를 만들었다.",
+        },
+        { speaker: "hwayoung", text: "두 공 모두 그만하시오. 다투려면 사람부터 내보내고 다투시오." },
+        { speaker: "kang_unsim", text: "화영아, 카메라 가리잖아." },
+        { speaker: "magun_a", text: "화영, 통제에 협조하려면 우선 이동 경로를 비우십시오." },
+        { speaker: "hwayoung", text: "이 와중에도 둘이 소인부터 치우려 드는구려." },
+        {
+          text: "운심은 화영의 어깨 너머로 휴대폰을 높이 들었다. 마근아는 세그웨이를 반 발 뒤로 뺐지만 시선은 운심의 화면에서 떠나지 않았다.",
+        },
+      ],
+      next: "ch1_s03_common",
+    },
+
+    ch1_s03_a2: {
+      id: "ch1_s03_a2",
+      lines: [
+        { text: "화영은 둘을 지나쳐 군중 쪽으로 돌아섰다." },
+        { speaker: "hwayoung", text: "앞줄부터 세 계단 물러나시오. 출구를 막지 마시오." },
+        {
+          text: "학생 하나가 화면을 보느라 듣지 못했다. 화영은 그 학생의 휴대폰을 내리지 않고 팔꿈치만 받쳐 방향을 돌렸다.",
+        },
+        { speaker: "hwayoung", text: "방송은 걸으면서도 볼 수 있소. 떨어지고 나서는 못 보오." },
+        {
+          text: "앞줄 몇 명이 투덜거리며 뒤로 움직였다. 그 빈자리를 계단 아래에서 올라온 학생들이 다시 채웠다. 화영은 난간 옆의 좁은 통로부터 비웠다.",
+        },
+        { text: "등 뒤에서 운심과 마근아의 말이 겹쳤다. 어느 쪽이 먼저 목소리를 높였는지는 듣지 못했다." },
+      ],
+      next: "ch1_s03_common",
+    },
+
+    ch1_s03_a3: {
+      id: "ch1_s03_a3",
+      lines: [
+        { text: "화영은 운심과 마근아를 지나 중간 층계참으로 올라갔다." },
+        { speaker: "hwayoung", text: "히쿠도공. 불을 붙인 자보다 장작을 쌓은 자부터 치우겠소. 내려오시오." },
+        { text: "히쿠도는 화영을 향해 두 팔을 벌렸다. 망토의 한쪽 끈이 풀려 발밑으로 흘렀다." },
+        { speaker: "hikudo", text: "화영, 넌 운이 좋군. 역사적인 첫 시연을 가장 가까이서 볼 자리를 얻었어." },
+        { speaker: "hwayoung", text: "내려오시오." },
+        { speaker: "hikudo", text: "명령은 조명이 꺼진 다음에 받아주지." },
+        {
+          text: "화영이 팔을 뻗자 손에 잡힌 것은 망토뿐이었다. 한쪽만 묶여 있던 끈이 풀리며 망토가 통째로 벗겨졌다. 히쿠도는 셔츠의 잘못 끼운 단추를 드러낸 채 두 계단 위로 물러났다.",
+        },
+        {
+          text: "앞줄 학생들이 웃으며 휴대폰을 들이밀었다. 화영이 망토를 내려놓고 다시 올라가려는 사이, 학생 셋이 히쿠도와 화영 사이를 메웠다.",
+        },
+      ],
+      next: "ch1_s03_common",
     },
 
     // 세 선택지 모두 결국 여기서 다시 합류한다 (대본의 "공통 합류" 절).

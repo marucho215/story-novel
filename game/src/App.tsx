@@ -20,8 +20,20 @@ function createNewGame(): GameSave {
   };
 }
 
+/**
+ * loadGame()은 저장 데이터의 "모양"만 확인한다. 그 모양이 맞아도 chapterId나
+ * sceneId가 지금 데이터에는 없는 씬을 가리킬 수 있다 (예: 옛날 세이브인데
+ * 그 사이 씬 id가 바뀐 경우). 그런 세이브는 여기서 걸러 새 게임으로 되돌린다.
+ */
+function resolveSave(save: GameSave | null): GameSave {
+  if (!save) return createNewGame();
+  const chapter = CHAPTERS[save.progress.chapterId];
+  if (!chapter || !chapter.scenes[save.progress.sceneId]) return createNewGame();
+  return save;
+}
+
 export default function App() {
-  const [save, setSave] = useState<GameSave>(() => loadGame() ?? createNewGame());
+  const [save, setSave] = useState<GameSave>(() => resolveSave(loadGame()));
 
   useEffect(() => {
     saveGame(save);
