@@ -8,7 +8,7 @@ import { chapter06 } from "./data/chapters/chapter06";
 import { chapter07 } from "./data/chapters/chapter07";
 import { createInitialStoryState } from "./data/initialState";
 import { applyChoice, getNextSceneId, getScene, getVisibleChoices, getVisibleLines } from "./engine/chapterEngine";
-import { loadGame, saveGame } from "./engine/saveLoad";
+import { clearSave, loadGame, saveGame } from "./engine/saveLoad";
 import { ChoiceList } from "./ui/components/ChoiceList";
 import { DialogueBox } from "./ui/components/DialogueBox";
 import type { GameSave } from "./types/story";
@@ -64,6 +64,9 @@ export default function App() {
   const canAdvance =
     !isLastLine || (isLastSceneOfChapter ? !!nextChapter : !!nextSceneId);
 
+  const accentClass =
+    chapter.pointOfView !== "ensemble" ? ` accent-${chapter.pointOfView.replace(/_/g, "-")}` : "";
+
   function goToScene(chapterId: string, sceneId: string) {
     setSave((current) => ({ ...current, progress: { chapterId, sceneId } }));
     setLineIndex(0);
@@ -89,6 +92,7 @@ export default function App() {
 
   function handleRestart() {
     if (!window.confirm("지금까지의 진행을 모두 지우고 처음부터 시작할까요?")) return;
+    clearSave();
     setSave(createNewGame());
     setLineIndex(0);
   }
@@ -120,7 +124,7 @@ export default function App() {
   });
 
   return (
-    <div className="game-screen">
+    <div className={`game-screen${accentClass}`}>
       <header className="game-header">
         <div className="chapter-title">
           <span className="chapter-title__eyebrow">성아여고</span>

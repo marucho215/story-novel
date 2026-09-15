@@ -67,8 +67,8 @@ export interface Scene {
 export interface ChapterScript {
   id: string;
   title: string;
-  /** 이 장의 시점 인물 */
-  pointOfView: CharacterId;
+  /** 이 장의 시점 인물. 단일 시점이 아니라 "전원 교차"인 장(7장)은 "ensemble"로 표시한다. */
+  pointOfView: CharacterId | "ensemble";
   firstSceneId: string;
   scenes: Record<string, Scene>;
   /**

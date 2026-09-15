@@ -3,8 +3,33 @@
 // 지키기 위해, 선택은 즉시 history에 fold(반영)되고 이전 상태로 되돌아가는 길을 만들지 않는다.
 
 import type { ChapterScript, Choice, Line, Scene } from "../types/script";
-import type { StoryState } from "../types/story";
+import type { EvidenceItem, StoryState } from "../types/story";
 import { applyEffects } from "./relationshipEngine";
+
+const REQUIRED_EVIDENCE_FIELDS: (keyof EvidenceItem)[] = [
+  "holders",
+  "knownBy",
+  "submittedToInquiry",
+  "publicStatus",
+  "destroyedCopies",
+  "disclosureLog",
+];
+
+/**
+ * script.ts의 updateEvidence 주석대로 "증거가 없으면 patch만으로 새로 만든다"를 지키려면
+ * 그 patch가 EvidenceItem의 필수 필드를 전부 갖고 있어야 한다. 지금까지는 이미 있는 증거를
+ * patch하는 용도로만 쓰여서 문제가 없었지만, 나중에 새 증거를 이 방식으로 만들다가 필드를
+ * 빠뜨리면 `as` 단언이 그걸 조용히 통과시켜버린다. 그래서 "새로 만드는" 순간에는 여기서
+ * 미리 막는다.
+ */
+function assertCompleteEvidenceItem(id: string, candidate: Partial<EvidenceItem>): asserts candidate is EvidenceItem {
+  const missing = REQUIRED_EVIDENCE_FIELDS.filter((field) => !(field in candidate));
+  if (missing.length > 0) {
+    throw new Error(
+      `증거 "${id}"가 아직 없는데 patch에 없는 필드가 있어 새로 만들 수 없음: ${missing.join(", ")}`,
+    );
+  }
+}
 
 export function getScene(chapter: ChapterScript, sceneId: string): Scene {
   const scene = chapter.scenes[sceneId];
@@ -50,7 +75,12 @@ export function applyChoice(
   let evidence = state.evidence;
   if (choice.updateEvidence) {
     const { id, patch } = choice.updateEvidence;
-    evidence = { ...evidence, [id]: { ...evidence[id], ...patch } as StoryState["evidence"][string] };
+    const existing = evidence[id];
+    const merged = { ...existing, ...patch };
+    if (!existing) {
+      assertCompleteEvidenceItem(id, merged);
+    }
+    evidence = { ...evidence, [id]: merged as EvidenceItem };
   }
 
   const nextState: StoryState = {

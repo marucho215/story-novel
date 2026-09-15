@@ -312,3 +312,90 @@ button {
     transition: none;
   }
 }
+
+/* 캐릭터별 포인트 컬러 (원본: styles.css .accent-* 이식) */
+.accent-hwayoung {
+  --char-ink: #69412f;
+  --char-accent: #af8a2f;
+  --char-soft: #eee2d6;
+}
+.accent-kang-unsim {
+  --char-ink: #af1835;
+  --char-accent: #e83353;
+  --char-soft: #f9e1e7;
+}
+.accent-effie-minos {
+  --char-ink: #5c5063;
+  --char-accent: #75677d;
+  --char-soft: #ebe6ed;
+}
+.accent-inan {
+  --char-ink: #2d7567;
+  --char-accent: #6dcbbc;
+  --char-soft: #def2ee;
+}
+.accent-kim-uju {
+  --char-ink: #282c2f;
+  --char-accent: #aea35e;
+  --char-soft: #e9e8e1;
+}
+.accent-magun-a {
+  --char-ink: #61733f;
+  --char-accent: #a4b86d;
+  --char-soft: #ebf0e0;
+}
+
+/* 위 클래스가 없는 상태(7장 ensemble 포함)에는 기존 --accent/--accent-deep이
+   그대로 fallback으로 쓰여서 지금의 중립 톤이 유지된다. */
+.chapter-title__eyebrow {
+  color: var(--char-ink, var(--accent-deep));
+}
+
+.dialogue-box {
+  border-left-color: var(--char-accent, var(--accent));
+}
+
+.speaker-name {
+  color: var(--char-ink, var(--accent-deep));
+  background: var(--char-soft, var(--paper-solid));
+}
+
+.advance-hint {
+  color: var(--char-accent, var(--accent));
+}
+
+.choice-button:hover,
+.choice-button:focus-visible {
+  border-left-color: var(--char-accent, var(--accent));
+}
+
+/* 화자별 아이콘 배지 — DialogueBox.tsx의 .speaker-icon-wrap과 짝 */
+.speaker-icon-wrap {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper-solid);
+  box-shadow: 0 4px 14px rgba(55, 63, 66, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.speaker-icon {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .speaker-icon-wrap {
+    width: 42px;
+    height: 42px;
+    top: 10px;
+    right: 14px;
+  }
+}

@@ -7,11 +7,20 @@
 // scene.next에 함수를 써서, 내용을 복제하지 않고 상태만 보고 분기했다.
 
 import type { ChapterScript } from "../../types/script";
+import type { StoryState } from "../../types/story";
+
+/** ch7_s06 운심-마근아 후일담 분기: 6장에서 마근아가 운심에게 마음을 열었고, 그 신뢰가 임계값 이상 쌓였는가. */
+function unsimTrustedMagunAAfterBreakthrough(state: StoryState): boolean {
+  return (
+    state.facts.ch6_breakthrough === "unsim" &&
+    (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60
+  );
+}
 
 export const chapter07: ChapterScript = {
   id: "chapter07_ensemble",
   title: "7장 전원 교차 남겨진 기록",
-  pointOfView: "effie_minos",
+  pointOfView: "ensemble",
   firstSceneId: "ch7_s01",
   scenes: {
     ch7_s01: {
@@ -148,7 +157,7 @@ export const chapter07: ChapterScript = {
         },
 
         // 공통 본문
-        { text: "사고 방송에는 운심이 마근아의 중단 요구를 비웃은 말, 계속 올라간 반응 수, `[화제]`의 출력 경보가 함께 남아 있었다." },
+        { text: "사고 방송에는 운심이 마근아의 중단 요구를 비웃은 말, 계속 올라간 반응 수, 능력 출력 경보가 함께 남아 있었다." },
         { text: "공개된 짧은 편집본에는 들어 있지 않은 구간이었다." },
         { text: "이난이 증거 제출 목록의 마지막 칸을 열었다." },
         { text: "`사고 방송 원본 및 보존 사본.`" },
@@ -229,6 +238,17 @@ export const chapter07: ChapterScript = {
         { speaker: "kang_unsim", text: "있는 것만." },
         { text: "이난이 제출 버튼을 눌렀다." },
         { text: "우주의 저장장치는 조사망 밖에 남았다." },
+        { text: "마근아가 화면에서 눈을 떼지 않은 채 말했다." },
+        { speaker: "magun_a", text: "이것도 같은 방식입니다." },
+        { speaker: "effie_minos", text: "뭐가요." },
+        { speaker: "magun_a", text: "필요한 걸 뺐는데 서류는 정상적으로 접수됩니다." },
+        { speaker: "magun_a", text: "처리 상태만 보면 아무 문제도 없어 보입니다." },
+        { text: "에피가 접었던 팔짱을 풀었다." },
+        { speaker: "effie_minos", text: "그럼 다 잃자는 거예요?" },
+        { speaker: "effie_minos", text: "저 하나 때문에 다섯 명 다요?" },
+        { speaker: "magun_a", text: "그렇게 말한 적 없습니다." },
+        { speaker: "effie_minos", text: "말 안 해도 그렇게 들려요." },
+        { text: "이난은 제출 확인 화면을 닫지 않은 채 두 사람을 번갈아 보았다." },
         { text: "토스케의 단안경에 접수 완료 표시가 떴다." },
         { text: "개인 소유 기록의 존재를 알리는 항목은 비어 있었다." },
         { speaker: "toske", text: "제출된 자료는 이대로 봉인하마." },
@@ -554,67 +574,50 @@ export const chapter07: ChapterScript = {
         // 운심과 마근아 후일담
         {
           text: "운심은 새 제한구역 안내문 초안을 마근아에게 보냈다.",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
         {
           text: "`난간 손상. 불 쓰면 진짜 무너짐. 들어가지 마.`",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
         {
           speaker: "magun_a",
           text: "표현은 비공식적이지만 위험과 결과가 명확합니다.",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
         {
           speaker: "kang_unsim",
           text: "한 줄 요약 합격 도장 찍어줘 그럼",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
         {
           text: "마근아는 문서 하단에 선도부 직인을 넣었다.",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
         {
           text: "운심은 자기 계정 홍보 문구를 덜어내고 안내문만 공유했다.",
-          condition: (state) =>
-            state.facts.ch6_breakthrough === "unsim" &&
-            (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60,
+          condition: unsimTrustedMagunAAfterBreakthrough,
         },
 
         {
           text: "마근아가 작성한 새 안내문에는 규정 번호보다 위험 사유가 먼저 적혔다.",
-          condition: (state) =>
-            !(state.facts.ch6_breakthrough === "unsim" && (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60),
+          condition: (state) => !unsimTrustedMagunAAfterBreakthrough(state),
         },
         {
           text: "`난간 손상으로 추락 위험이 있습니다. 출입하지 마십시오.`",
-          condition: (state) =>
-            !(state.facts.ch6_breakthrough === "unsim" && (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60),
+          condition: (state) => !unsimTrustedMagunAAfterBreakthrough(state),
         },
         {
           text: "운심은 공개 게시물 대신 마근아의 개인 대화창으로 답했다.",
-          condition: (state) =>
-            !(state.facts.ch6_breakthrough === "unsim" && (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60),
+          condition: (state) => !unsimTrustedMagunAAfterBreakthrough(state),
         },
         {
           text: "`이제야 사람 말 같네.`",
-          condition: (state) =>
-            !(state.facts.ch6_breakthrough === "unsim" && (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60),
+          condition: (state) => !unsimTrustedMagunAAfterBreakthrough(state),
         },
         {
           text: "마근아는 답장 대신 안내문에서 중복된 규정 번호 하나를 지웠다.",
-          condition: (state) =>
-            !(state.facts.ch6_breakthrough === "unsim" && (state.relationships.magun_a?.kang_unsim?.trust ?? 0) >= 60),
+          condition: (state) => !unsimTrustedMagunAAfterBreakthrough(state),
         },
 
         // 화영과 마근아 후일담
@@ -850,19 +853,32 @@ export const chapter07: ChapterScript = {
     ch7_s07_full_disclosure: {
       id: "ch7_s07_full_disclosure",
       lines: [
-        { text: "사고 일주일 뒤 오전 8시, 교내 사건기록부에 새 항목이 게시됐다." },
+        { text: "사고 일주일 뒤 오전 8시, 교내 사건기록부 게시 버튼 앞에 다섯 사람이 모였다." },
+        { text: "이난이 커서를 게시 버튼 위에 올린 채 움직이지 않았다." },
+        { speaker: "inan", text: "마지막으로 뺄 사람 있으면 지금 말해." },
+        { text: "아무도 대답하지 않았다." },
+        { speaker: "kang_unsim", text: "뺄 거였으면 처음부터 원본을 냈겠어?" },
+        { text: "이난이 버튼을 눌렀다." },
         { text: "`남쪽 연결계단 사망 사고: 조사 자료 공개본.`" },
         { text: "첫 줄에는 피해 학생 한 명이 사망했다는 사실이 적혔다." },
         { text: "이름과 의료 정보는 가려졌고, 그 아래로 사전 보고서와 행정 처리 경로, 방송 전사본, 관계자 진술이 작성자 이름과 함께 이어졌다." },
-        { text: "운심의 휴대폰에 알림이 몰렸다." },
+        { text: "운심의 휴대폰에 알림이 몰리기 시작했다." },
+        { text: "사탄이 그 소리에 맞춰 한 번 크게 부풀었다가, 평소 크기로 가라앉았다." },
         { text: "운심은 댓글 창을 열지 않고 사건기록부 링크만 자기 계정 상단에 고정했다." },
+        { speaker: "kang_unsim", text: "봐라, 사탄." },
+        { speaker: "kang_unsim", text: "이번엔 내가 먼저 껐어." },
         { text: "마근아는 공개된 경고문 원문 옆에 새 안전 안내 양식을 붙였다." },
+        { text: "규정 번호보다 위험 사유가 먼저 오는 양식이었다." },
         { text: "토스케의 행정 실패 보고서에는 교장 직인이 찍혀 있었다." },
         { text: "특별 생활 지도부에는 활동 정지 유지 결정이 내려졌다." },
         { text: "재심 날짜와 시설 안전 점검 일정도 함께 공지됐다." },
+        { speaker: "hwayoung", text: "이름을 걸었으니, 재심에도 이름으로 나가야 하지 않겠소." },
         { text: "이난은 지도부실 출석부 대신 후속 조치표를 문에 붙였다." },
         { text: "다섯 사람은 각자 맡은 칸에 귀환 예정 시각을 적었다." },
+        { text: "우주는 자기 칸에 시각 대신 물음표를 적었다가, 지우고 시각을 채워 넣었다." },
         { text: "에피가 마지막으로 자기 시각을 적고 펜 뚜껑을 닫았다." },
+        { text: "카오가 에피의 손등 위로 부리를 얹었다." },
+        { text: "에피는 이번엔 손을 치우지 않았다." },
         { text: "ENDING · 전면 공개: 이름을 남기는 사람들" },
       ],
     },
@@ -870,18 +886,27 @@ export const chapter07: ChapterScript = {
     ch7_s07_selective_disclosure: {
       id: "ch7_s07_selective_disclosure",
       lines: [
-        { text: "사고 일주일 뒤 오전 8시, 교내 사건기록부에 조사 결과 요약이 게시됐다." },
+        { text: "사고 일주일 뒤 오전 8시, 게시 전 마지막 검토가 지도부실에서 열렸다." },
+        { text: "화영이 피해 학생의 이동 경로가 적힌 항목을 가리켰다." },
+        { speaker: "hwayoung", text: "이 줄은 아직도 마음에 걸리오." },
+        { speaker: "hwayoung", text: "지워도 될지 한 번 더 봐주시오." },
+        { text: "우주가 그 항목을 비공개 처리 목록으로 옮기고, 대신 `교장실 조사 원본에 보존`이라는 인증값을 옆에 달았다." },
+        { speaker: "kim_uju", text: "못 보게 잠근 거야." },
+        { speaker: "kim_uju", text: "열쇠는 남겨뒀어." },
+        { text: "교내 사건기록부에 조사 결과 요약이 게시됐다." },
         { text: "`남쪽 연결계단 사망 사고: 공개 범위 제한본.`" },
         { text: "피해 학생의 이름, 이동 경로, 의료 기록은 공개본에서 제외됐다." },
         { text: "사전 보고가 방치된 과정과 방송·능력 출력의 책임, 마근아의 경고 전달 실패는 항목별로 남았다." },
-        { text: "공개되지 않은 자료 목록도 문서 끝에 표시됐다." },
-        { text: "각 항목에는 `교장실 조사 원본에 보존`이라는 인증값이 붙었다." },
         { text: "운심이 댓글 입력창에 `숨긴 거 없음`이라고 썼다가 지웠다." },
-        { text: "대신 공개 범위 기준과 조사 원본 보존 번호를 연결했다." },
+        { speaker: "kang_unsim", text: "이 말, 거짓말은 아닌데 정확하지도 않네." },
+        { text: "운심은 대신 공개 범위 기준과 조사 원본 보존 번호를 연결한 게시물을 올렸다." },
         { speaker: "kang_unsim", text: "안 보여주는 정보가 왜 빠졌는지는 여기." },
         { speaker: "kang_unsim", text: "책임은 안 가렸어." },
+        { text: "라파엘이 이난의 어깨 위에서 조용히 서리를 걷었다." },
+        { text: "이난은 그제야 자신이 검토 내내 숨을 얕게 쉬고 있었다는 걸 알아챘다." },
         { text: "지도부실 문에는 활동 정지 안내와 재심 일정이 나란히 붙었다." },
         { text: "화영은 두 종이가 떨어지지 않도록 모서리에 새 테이프를 눌러 붙였다." },
+        { speaker: "hwayoung", text: "이 정도면, 그 아이를 두 번 구경거리로 만들지는 않은 것 같소." },
         { text: "ENDING · 선택적 공개: 가려야 할 이름" },
       ],
     },
@@ -894,12 +919,20 @@ export const chapter07: ChapterScript = {
         { text: "운심의 방송 책임과 화영의 현장 판단이 각자 쓴 문장으로 이어졌다." },
         { text: "에피, 이난, 우주도 사고 전후 자신이 택한 행동과 놓친 일을 자기 이름 아래 적었다." },
         { text: "마근아의 별도 진술과 교장실의 보고서 방치 경로는 관련 문서로 연결됐다." },
+        { text: "게시 직후, 지도부실 단말기에 해체 심사 출석 통지가 동시에 떴다." },
         { speaker: "inan", text: "해체 심사는 그대로래." },
         { speaker: "kim_uju", text: "사과문 올렸다고 즉시 복구되는 시스템은 아니니까." },
         { speaker: "kang_unsim", text: "그건 정상 작동이네." },
-        { text: "다섯 사람은 지도부실에서 해체 심사 출석 통지를 확인했다." },
+        { text: "웃는 사람은 없었다." },
+        { text: "반박하는 사람도 없었다." },
+        { text: "사탄이 낮은 불씨 상태로 운심의 머리 위에 얹혀 있었다." },
         { text: "이난이 `전원 출석`을 누르자 각자의 단말기에 같은 일정이 등록됐다." },
-        { text: "에피는 참석자 목록에서 다섯 이름을 확인한 뒤 화면을 껐다." },
+        { speaker: "hwayoung", text: "다섯이 같이 적었으니, 다섯이 같이 앉으면 되오." },
+        { text: "에피는 참석자 목록에서 다섯 이름을 확인했다." },
+        { text: "카오가 목록 화면에 비친 자기 그림자를 쪼았다." },
+        { speaker: "effie_minos", text: "그거 화면이야, 진짜 아니고." },
+        { text: "웃음이 나오려던 것도 사실이었다." },
+        { text: "에피는 웃지 않은 채로 화면을 껐다." },
         { text: "ENDING · 공동 책임 인정: 따로 적은 한 문장" },
       ],
     },
@@ -907,21 +940,78 @@ export const chapter07: ChapterScript = {
     ch7_s07_blame_shift: {
       id: "ch7_s07_blame_shift",
       lines: [
-        { text: "사고 일주일 뒤 오전 8시, 교장실 조사 결과가 게시됐다." },
+        { text: "D+7 오전 8시, 교장실 조사 결과가 게시됐다." },
         { text: "공개본은 시설 손상과 허가받지 않은 퍼포먼스, 예측 범위를 벗어난 능력 출력까지 적고 사고 경위를 닫았다." },
         { text: "발언 인용란에는 방송 원본 대신 출력 수치표만 들어갔다." },
+        { text: "다섯 사람의 휴대폰이 동시에 울렸다." },
+        { text: "지도부실에 있던 건 에피뿐이었다." },
+        { text: "나머지 넷은 알림을 보고 하나둘 문을 밀고 들어왔다." },
+        { text: "운심이 공지를 소리 내어 읽었다." },
+        { speaker: "kang_unsim", text: "특별 생활 지도부는 운영 개선을 조건으로 해체 심사를 면했다." },
+        { text: "운심이 휴대폰을 책상에 내리쳤다." },
+        { text: "화면이 옆으로 미끄러지며 마근아의 시계 하나를 바닥으로 떨어뜨렸다." },
+        { speaker: "kang_unsim", text: "우리 다섯 이름은 어디 있어?" },
+        { speaker: "kang_unsim", text: "찾아줄 사람?" },
+        { text: "에피가 의자를 뒤로 밀며 일어섰다." },
+        { text: "다리가 바닥을 긁는 소리가 방을 갈랐다." },
+        { speaker: "effie_minos", text: "방이라도 남아야 나중에 뭐든 하죠." },
+        { speaker: "kang_unsim", text: "나중에 뭘 해." },
+        { speaker: "kang_unsim", text: "걔는 이제 없는데." },
+        { speaker: "effie_minos", text: "내가 그거 몰라서 빼자고 했겠어요?" },
+        { speaker: "kang_unsim", text: "몰랐으면 좋겠다, 진짜." },
+        { text: "운심의 머리 위에서 사탄이 순간적으로 부풀었다가, 그대로 사그라들며 잿빛으로 꺼졌다." },
+        { speaker: "kang_unsim", text: "그리고 너." },
+        { text: "운심이 마근아를 돌아봤다." },
+        { speaker: "kang_unsim", text: "넌 처음부터 다 내라고 했지." },
+        { speaker: "kang_unsim", text: "그래서 지금 그 말 하고 싶어서 죽겠지?" },
+        { speaker: "magun_a", text: "아닙니다." },
+        { speaker: "magun_a", text: "그때도 제 말은 그렇게 들렸을 겁니다." },
+        { speaker: "kang_unsim", text: "지금 그거 사과야, 자랑이야?" },
+        { text: "마근아는 대답하지 못했다." },
+        { text: "손목시계를 눌렀지만 어느 것도 울리지 않았다." },
+        { speaker: "hwayoung", text: "그만 좀 해!" },
+        { text: "화영은 그 말 위에 흐트러진 격식을 도로 여몄다." },
+        { speaker: "hwayoung", text: "그만들, 하시오." },
+        { text: "화영도 방금 튀어나온 말을 들은 얼굴이었다." },
+        { text: "화영이 두 사람 사이로 몸을 밀어 넣었다." },
+        { text: "목소리 앞부분이 아직 방 안에 걸려 있었다." },
+        { text: "화영도 그걸 들은 얼굴로, 다음 말은 천천히 골라 다시 이었다." },
+        { speaker: "hwayoung", text: "서로 물어뜯는다고 그 아이가 돌아오는 것도 아니오." },
+        { speaker: "kang_unsim", text: "화영 언니는 좋겠다." },
+        { speaker: "kang_unsim", text: "그렇게 남 일처럼 말할 수 있어서." },
+        { speaker: "hwayoung", text: "소인도 이 결말이 싫소." },
+        { speaker: "hwayoung", text: "허나 그날 소인은 이 자리에서 아무도 막지 않았소." },
+        { speaker: "hwayoung", text: "그러니 지금 서로를 물어뜯는 게 누구인지 따질 자격, 소인에게도 없소." },
+        { text: "화영의 어깨 위에서 우리엘의 청동 팔이 팽팽하게 당겨졌다." },
+        { text: "이난이 근무표를 접었다." },
+        { text: "접는 소리가 필요 이상으로 컸다." },
+        { speaker: "inan", text: "이 결정은 못 뒤집어." },
+        { speaker: "inan", text: "제출 목록은 이미 봉인됐어." },
+        { speaker: "effie_minos", text: "그렇게 말하면 편하겠다, 이난은." },
+        { speaker: "inan", text: "편한 거 아니야." },
+        { speaker: "inan", text: "그냥 뒤집을 방법이 없다는 거야." },
+        { text: "라파엘의 서리가 근무표 접힌 자리를 따라 번지며 종이를 조금 뒤틀었다." },
+        { text: "우주가 노트북을 소리 나게 덮었다." },
+        { speaker: "kim_uju", text: "나 먼저 갈게." },
+        { speaker: "kang_unsim", text: "어디를." },
+        { speaker: "kim_uju", text: "몰라. 여기 말고." },
+        { text: "우주는 백팩을 채 메지 못한 채 문을 열어젖혔다." },
+        { text: "손잡이가 벽에 부딪혀 튕겨 나왔다." },
+        { text: "지퍼 틈으로 단탈리온의 꼬리만 나와 있었고, 그 색이 옅어지고 있었다." },
+        { text: "문이 닫힌 뒤에도 아무도 그 소리를 따라잡지 못했다." },
         { text: "특별 생활 지도부는 운영 개선을 조건으로 해체 심사를 면했다." },
-        { text: "운심은 공유 화면을 닫았다." },
+        { text: "다섯 사람의 이름 중 어느 것도 그 조건문 안에는 없었다." },
+        { text: "살아남은 건 부서였다." },
         { text: "화영은 지도부 명의의 현장 점검 요청을 개인 명의로 다시 냈다." },
         { text: "이난이 만든 근무표의 확인 인원은 0명으로 남았다." },
-        { text: "우주는 사고 방송 사본을 개인 보존함으로 옮겼다." },
-        { text: "접근 권한 목록에서 지도부 공동 계정을 빼고 자기 이름만 남겼다." },
-        { text: "지도부실에는 에피가 먼저 도착했다." },
-        { text: "활동 정지 안내문은 떼어져 있었지만, 의자 네 개는 전날 밀어둔 자리에 그대로 놓여 있었다." },
+        { text: "우주는 사고 방송 사본을 개인 보존함으로 옮기고, 접근 권한 목록에서 지도부 공동 계정을 뺀 뒤 자기 이름만 남겼다." },
+        { text: "지도부실에는 에피만 남았다." },
+        { text: "활동 정지 안내문은 떼어져 있었지만, 의자 네 개는 아까 밀려난 자리 그대로 놓여 있었다." },
         { text: "카오가 주머니 밖으로 머리를 내밀었다." },
         { text: "에피의 조리개 동공이 좁아지기 전에 손바닥으로 카오의 눈을 덮었다." },
         { speaker: "effie_minos", text: "이건 갖지 마." },
         { text: "에피는 빈 출석부에 자기 이름을 적지 않고 지도부실 문을 닫았다." },
+        { text: "의자 네 개는 그대로 있었다." },
         { text: "ENDING · 책임 전가 및 관계 붕괴: 남은 부서" },
       ],
     },

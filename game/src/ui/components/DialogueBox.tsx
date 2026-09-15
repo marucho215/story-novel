@@ -1,4 +1,4 @@
-import { displayNameOf } from "../../data/characters";
+import { displayNameOf, iconOf } from "../../data/characters";
 import type { Line } from "../../types/script";
 
 /**
@@ -10,6 +10,7 @@ import type { Line } from "../../types/script";
  */
 export function DialogueBox({ line, onAdvance }: { line: Line; onAdvance?: () => void }) {
   const className = onAdvance ? "dialogue-box dialogue-box--advanceable" : "dialogue-box";
+  const icon = line.speaker ? iconOf(line.speaker) : undefined;
 
   return (
     <div
@@ -19,6 +20,12 @@ export function DialogueBox({ line, onAdvance }: { line: Line; onAdvance?: () =>
       tabIndex={onAdvance ? 0 : undefined}
     >
       {line.speaker && <div className="speaker-name">{displayNameOf(line.speaker)}</div>}
+
+      {icon && (
+        <div className="speaker-icon-wrap" aria-hidden="true">
+          <img className="speaker-icon" src={icon} alt="" />
+        </div>
+      )}
 
       <p className={line.speaker ? "line line--dialogue" : "line line--narration"}>{line.text}</p>
 
