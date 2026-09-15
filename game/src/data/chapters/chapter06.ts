@@ -6,7 +6,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter06: ChapterScript = {
   id: "chapter06_magun_a",
-  title: "6장 마근아 — 도착 확인",
+  title: "6장 마근아 도착 확인",
   pointOfView: "magun_a",
   firstSceneId: "ch6_s01",
   scenes: {

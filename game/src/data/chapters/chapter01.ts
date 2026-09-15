@@ -13,7 +13,7 @@ import type { ChapterScript } from "../../types/script";
 
 export const chapter01: ChapterScript = {
   id: "chapter01_hwayoung",
-  title: "1장 화영 — 남쪽 계단, 한 명",
+  title: "1장 화영 남쪽 계단, 한 명",
   pointOfView: "hwayoung",
   firstSceneId: "ch1_s01",
   scenes: {
