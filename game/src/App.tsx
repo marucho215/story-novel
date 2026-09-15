@@ -97,28 +97,38 @@ export default function App() {
   return (
     <div className="game-screen">
       <header className="game-header">
-        <h1>{chapter.title}</h1>
+        <div className="chapter-title">
+          <span className="chapter-title__eyebrow">성아여고</span>
+          <h1>{chapter.title}</h1>
+        </div>
+
         <button className="restart-button" onClick={handleRestart}>
           처음부터
         </button>
       </header>
 
-      <DialogueBox line={currentLine} onAdvance={canAdvance ? handleAdvance : undefined} />
+      <main className="scene-stage">
+        <div className="novel-ui">
+          {showChoices && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
 
-      {showChoices && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
+          <DialogueBox line={currentLine} onAdvance={canAdvance ? handleAdvance : undefined} />
 
-      {isStoryEnd && <p className="chapter-end">— 옮겨 적은 이야기는 여기까지입니다 —</p>}
+          {isStoryEnd && <p className="chapter-end">— 옮겨 적은 이야기는 여기까지입니다 —</p>}
+        </div>
+      </main>
 
       <details className="debug-panel">
-        <summary>디버그: 관계 수치 / 선택 기록</summary>
-        <RelationshipDebugPanel relationships={save.story.relationships} />
-        <ol>
-          {save.story.history.map((record, index) => (
-            <li key={index}>
-              {record.chapterId} / {record.sceneId} / {record.choiceId}
-            </li>
-          ))}
-        </ol>
+        <summary>디버그</summary>
+        <div className="debug-panel__body">
+          <RelationshipDebugPanel relationships={save.story.relationships} />
+          <ol>
+            {save.story.history.map((record, index) => (
+              <li key={index}>
+                {record.chapterId} / {record.sceneId} / {record.choiceId}
+              </li>
+            ))}
+          </ol>
+        </div>
       </details>
     </div>
   );

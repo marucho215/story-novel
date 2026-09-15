@@ -7,9 +7,11 @@ import type { Line } from "../../types/script";
  * 선택지를 보여줘야 하는 마지막 줄에서는 onAdvance를 넘기지 않아서 클릭해도 반응하지 않는다.
  */
 export function DialogueBox({ line, onAdvance }: { line: Line; onAdvance?: () => void }) {
+  const className = onAdvance ? "dialogue-box dialogue-box--advanceable" : "dialogue-box";
+
   return (
     <div
-      className={onAdvance ? "dialogue-box dialogue-box--advanceable" : "dialogue-box"}
+      className={className}
       onClick={onAdvance}
       role={onAdvance ? "button" : undefined}
       tabIndex={onAdvance ? 0 : undefined}
@@ -20,11 +22,15 @@ export function DialogueBox({ line, onAdvance }: { line: Line; onAdvance?: () =>
         }
       }}
     >
-      <p className={line.speaker ? "line line--dialogue" : "line line--narration"}>
-        {line.speaker && <strong className="speaker">{displayNameOf(line.speaker)}</strong>}
-        {line.text}
-      </p>
-      {onAdvance && <span className="advance-hint">▼ 클릭하여 계속</span>}
+      {line.speaker && <div className="speaker-name">{displayNameOf(line.speaker)}</div>}
+
+      <p className={line.speaker ? "line line--dialogue" : "line line--narration"}>{line.text}</p>
+
+      {onAdvance && (
+        <span className="advance-hint" aria-label="계속">
+          ▼
+        </span>
+      )}
     </div>
   );
 }
