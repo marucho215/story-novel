@@ -7,10 +7,7 @@ export interface Character {
   icon?: string; // 없으면 아이콘 자리 비움
 }
 
-// public/ 폴더 파일은 문자열 경로로 직접 참조하면 Vite가 배포 base 경로(예: GitHub Pages의
-// "/story-novel/")를 반영해주지 않는다. import.meta.env.BASE_URL로 그 경로를 붙여서
-// 로컬(`/`)과 GitHub Pages 서브 경로 양쪽에서 다 맞게 만든다.
-const iconPath = (file: string) => `${import.meta.env.BASE_URL}icons/${file}`;
+const iconPath = (fileName: string) => `${import.meta.env.BASE_URL}icons/${fileName}`;
 
 export const CHARACTERS: Character[] = [
   { id: "hwayoung", displayName: "화영", icon: iconPath("hwayoung.png") },

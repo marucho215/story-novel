@@ -86,13 +86,13 @@ button {
   z-index: 10;
   top: 0;
   left: 50%;
-  width: min(100% - 40px, 1100px);
+  width: min(100% - 32px, 1240px);
   transform: translateX(-50%);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 4px 0;
+  padding: 20px 2px 0;
 }
 
 .chapter-title {
@@ -114,15 +114,15 @@ button {
   display: block;
   margin-bottom: 4px;
   color: var(--accent-deep);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .game-header h1 {
   margin: 0;
   color: #3f484d;
-  font-size: clamp(17px, 2vw, 22px);
+  font-size: clamp(15px, 1.6vw, 20px);
   font-weight: 650;
   letter-spacing: -0.025em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -152,25 +152,26 @@ button {
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
-  padding: 110px 24px 34px;
+  padding: 92px 20px 24px;
 }
 
 .novel-ui {
-  width: min(86%, 880px);
+  width: min(94%, 1180px);
   margin: 0 auto;
 }
 
 .dialogue-box {
   position: relative;
-  min-height: 190px;
-  padding: 30px 42px 28px;
-  border: 1px solid rgba(74, 84, 89, 0.14);
-  border-left: 4px solid var(--accent);
-  border-radius: 4px 14px 14px 4px;
-  background: rgba(255, 250, 240, 0.86);
-  box-shadow: 0 10px 30px rgba(55, 63, 66, 0.1);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  min-height: 184px;
+  padding: 38px 48px 30px;
+  border: 1px solid rgba(74, 84, 89, 0.13);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px 12px 12px 3px;
+  background:
+    linear-gradient(90deg, rgba(255, 254, 250, 0.97) 0%, rgba(255, 253, 247, 0.92) 72%, rgba(255, 253, 247, 0.86) 100%);
+  box-shadow: 0 14px 34px rgba(55, 63, 66, 0.11);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .dialogue-box--advanceable {
@@ -178,7 +179,8 @@ button {
 }
 
 .dialogue-box--advanceable:hover {
-  background: rgba(255, 250, 240, 0.92);
+  background:
+    linear-gradient(90deg, rgba(255, 254, 250, 0.985) 0%, rgba(255, 253, 247, 0.95) 72%, rgba(255, 253, 247, 0.9) 100%);
 }
 
 .dialogue-box--advanceable:focus-visible {
@@ -189,14 +191,14 @@ button {
 .speaker-name {
   position: absolute;
   z-index: 1;
-  top: -18px;
-  left: 28px;
-  min-width: 132px;
+  top: -17px;
+  left: 30px;
+  min-width: 130px;
   padding: 8px 18px;
-  border: 1px solid rgba(63, 76, 84, 0.18);
-  border-radius: 5px;
-  background: var(--paper-solid);
-  box-shadow: 0 8px 20px rgba(55, 63, 66, 0.1);
+  border: 1px solid rgba(63, 76, 84, 0.14);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--char-soft, var(--paper-solid)) 90%, white 10%);
+  box-shadow: 0 6px 16px rgba(55, 63, 66, 0.08);
   color: var(--accent-deep);
   font-size: 15px;
   font-weight: 700;
@@ -210,8 +212,9 @@ button {
   white-space: pre-wrap;
   word-break: keep-all;
   overflow-wrap: anywhere;
-  font-size: clamp(16px, 1.9vw, 19px);
-  line-height: 1.85;
+  max-width: calc(100% - 132px);
+  font-size: clamp(16px, 1.75vw, 19px);
+  line-height: 1.9;
   letter-spacing: -0.018em;
 }
 
@@ -222,8 +225,8 @@ button {
 .advance-hint {
   position: absolute;
   z-index: 1;
-  right: 24px;
-  bottom: 15px;
+  right: 22px;
+  bottom: 14px;
   color: var(--accent);
   font-size: 11px;
   line-height: 1;
@@ -244,7 +247,7 @@ button {
 }
 
 .choice-list {
-  width: min(100%, 760px);
+  width: min(92%, 900px);
   margin: 0 auto 18px;
   display: grid;
   gap: 10px;
@@ -298,12 +301,12 @@ button {
   }
 
   .novel-ui {
-    width: 94%;
+    width: 96%;
   }
 
   .dialogue-box {
-    min-height: 170px;
-    padding: 26px 22px 24px;
+    min-height: 164px;
+    padding: 32px 24px 24px;
     border-left-width: 3px;
     border-radius: 3px 10px 10px 3px;
   }
@@ -313,6 +316,10 @@ button {
     min-width: 108px;
     padding: 7px 14px;
     font-size: 14px;
+  }
+
+  .line {
+    max-width: calc(100% - 82px);
   }
 
   .choice-list {
@@ -394,22 +401,22 @@ button {
 .speaker-symbol {
   position: absolute;
   z-index: 0;
-  top: -6px;
-  right: 18px;
-  width: 168px;
-  height: 168px;
+  top: 12px;
+  right: 34px;
+  width: 132px;
+  height: 132px;
   object-fit: contain;
-  opacity: 0.2;
-  filter: saturate(0.8) brightness(1.05);
+  opacity: 0.11;
+  filter: saturate(0.72) brightness(1.08);
   pointer-events: none;
   user-select: none;
 }
 
 @media (max-width: 640px) {
   .speaker-symbol {
-    width: 112px;
-    height: 112px;
-    top: -2px;
-    right: 10px;
+    width: 92px;
+    height: 92px;
+    top: 12px;
+    right: 16px;
   }
 }
