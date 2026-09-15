@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import { chapter01 } from "./data/chapters/chapter01";
+import { chapter02 } from "./data/chapters/chapter02";
+import { chapter03 } from "./data/chapters/chapter03";
+import { chapter04 } from "./data/chapters/chapter04";
+import { chapter05 } from "./data/chapters/chapter05";
+import { chapter06 } from "./data/chapters/chapter06";
+import { chapter07 } from "./data/chapters/chapter07";
 import { createInitialStoryState } from "./data/initialState";
-import { applyChoice, getScene, getVisibleChoices } from "./engine/chapterEngine";
+import { applyChoice, getNextSceneId, getScene, getVisibleChoices, getVisibleLines } from "./engine/chapterEngine";
 import { loadGame, saveGame } from "./engine/saveLoad";
 import { ChoiceList } from "./ui/components/ChoiceList";
 import { DialogueBox } from "./ui/components/DialogueBox";
 import { RelationshipDebugPanel } from "./ui/components/RelationshipDebugPanel";
 import type { GameSave } from "./types/story";
-import type { Choice } from "./types/script";
+import type { ChapterScript, Choice } from "./types/script";
 
-// 지금은 1장 하나만 있으니 챕터를 id로 찾아오는 아주 단순한 표.
-// 장이 늘어나면 이 표에 추가하기만 하면 된다.
-const CHAPTERS = { [chapter01.id]: chapter01 };
+// 장이 늘어날 때마다 이 표에 추가하기만 하면 된다. 첫 장은 chapter01.firstSceneId.
+const ALL_CHAPTERS = [chapter01, chapter02, chapter03, chapter04, chapter05, chapter06, chapter07];
+const CHAPTERS: Record<string, ChapterScript> = Object.fromEntries(
+  ALL_CHAPTERS.map((chapter) => [chapter.id, chapter]),
+);
 
 function createNewGame(): GameSave {
   return {
@@ -45,20 +53,26 @@ export default function App() {
   const chapter = CHAPTERS[save.progress.chapterId];
   const scene = getScene(chapter, save.progress.sceneId);
   const visibleChoices = getVisibleChoices(scene, save.story);
+  const visibleLines = getVisibleLines(scene, save.story);
 
-  const isLastLine = lineIndex >= scene.lines.length - 1;
-  const currentLine = scene.lines[lineIndex];
+  const nextSceneId = getNextSceneId(scene, save.story);
+  const isLastSceneOfChapter = !nextSceneId && visibleChoices.length === 0;
+  const nextChapter = chapter.nextChapterId ? CHAPTERS[chapter.nextChapterId] : undefined;
+
+  const isLastLine = lineIndex >= visibleLines.length - 1;
+  const currentLine = visibleLines[lineIndex];
   const showChoices = isLastLine && visibleChoices.length > 0;
-  const isChapterEnd = isLastLine && !scene.next && visibleChoices.length === 0;
-  const canAdvance = !isLastLine || (!!scene.next && visibleChoices.length === 0);
+  const isStoryEnd = isLastLine && isLastSceneOfChapter && !nextChapter;
+  const canAdvance =
+    !isLastLine || (isLastSceneOfChapter ? !!nextChapter : !!nextSceneId);
+
+  function goToScene(chapterId: string, sceneId: string) {
+    setSave((current) => ({ ...current, progress: { chapterId, sceneId } }));
+    setLineIndex(0);
+  }
 
   function handleChoose(choice: Choice) {
-    const { state, nextSceneId } = applyChoice(
-      save.story,
-      chapter.id,
-      scene.id,
-      choice,
-    );
+    const { state, nextSceneId } = applyChoice(save.story, chapter.id, scene.id, choice);
     setSave({ story: state, progress: { chapterId: chapter.id, sceneId: nextSceneId } });
     setLineIndex(0);
   }
@@ -68,9 +82,10 @@ export default function App() {
       setLineIndex(lineIndex + 1);
       return;
     }
-    if (scene.next) {
-      setSave({ ...save, progress: { chapterId: chapter.id, sceneId: scene.next } });
-      setLineIndex(0);
+    if (nextSceneId) {
+      goToScene(chapter.id, nextSceneId);
+    } else if (nextChapter) {
+      goToScene(nextChapter.id, nextChapter.firstSceneId);
     }
   }
 
@@ -92,7 +107,7 @@ export default function App() {
 
       {showChoices && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
 
-      {isChapterEnd && <p className="chapter-end">— 옮겨 적은 장면은 여기까지입니다 —</p>}
+      {isStoryEnd && <p className="chapter-end">— 옮겨 적은 이야기는 여기까지입니다 —</p>}
 
       <details className="debug-panel">
         <summary>디버그: 관계 수치 / 선택 기록</summary>

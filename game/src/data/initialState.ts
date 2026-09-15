@@ -20,7 +20,19 @@ function createEmptyRelationships(): Relationships {
 export function createInitialStoryState(): StoryState {
   return {
     facts: {},
-    evidence: {},
+    // MASTER_DESIGN.md §10.2의 예시와 같은 모양이다. 2장에서 운심이 사고 방송 원본을
+    // 어떻게 할지 선택하는 순간부터 이 증거 객체를 실제로 건드리기 시작한다.
+    evidence: {
+      original_accident_stream: {
+        id: "original_accident_stream",
+        holders: ["kang_unsim", "kim_uju"],
+        knownBy: ["kang_unsim", "kim_uju"],
+        submittedToInquiry: false,
+        publicStatus: "private",
+        destroyedCopies: [],
+        disclosureLog: [],
+      },
+    },
     relationships: createEmptyRelationships(),
     history: [],
   };
