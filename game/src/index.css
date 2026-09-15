@@ -394,12 +394,12 @@ button {
 .speaker-symbol {
   position: absolute;
   z-index: 0;
-  top: 4px;
-  right: 24px;
-  width: 120px;
-  height: 120px;
+  top: -6px;
+  right: 18px;
+  width: 168px;
+  height: 168px;
   object-fit: contain;
-  opacity: 0.1;
+  opacity: 0.2;
   filter: saturate(0.8) brightness(1.05);
   pointer-events: none;
   user-select: none;
@@ -407,9 +407,9 @@ button {
 
 @media (max-width: 640px) {
   .speaker-symbol {
-    width: 84px;
-    height: 84px;
-    top: 2px;
-    right: 14px;
+    width: 112px;
+    height: 112px;
+    top: -2px;
+    right: 10px;
   }
 }
