@@ -94,6 +94,25 @@ export default function App() {
     setLineIndex(0);
   }
 
+  // 엔터/스페이스로도 대사를 넘길 수 있게 한다. 대화 상자에 포커스가 있을 때만
+  // 반응하면 클릭 없이는 쓸모가 없으니, 페이지 전체에서 듣는다. 다만 버튼이나
+  // 디버그 패널의 <summary> 등 자체적으로 엔터/스페이스에 반응하는 요소 위에서는
+  // 끼어들지 않는다 — 안 그러면 선택지를 고르면서 동시에 대사도 넘어가 버린다.
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      if (!canAdvance) return;
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("button, a, summary, input, textarea, select")) return;
+
+      event.preventDefault();
+      handleAdvance();
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
+
   return (
     <div className="game-screen">
       <header className="game-header">
