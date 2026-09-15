@@ -64,8 +64,12 @@ export default function App() {
   const canAdvance =
     !isLastLine || (isLastSceneOfChapter ? !!nextChapter : !!nextSceneId);
 
+  // 상징색은 "장의 시점 인물"이 아니라 "지금 말하고 있는 캐릭터"를 따라간다.
+  // 그래야 한 장 안에서 화자가 바뀔 때마다(예: 6장의 화영↔마근아) 색도 같이 바뀐다.
+  // 지문(내레이션)처럼 화자가 없는 줄에서는 그 장의 시점 인물 색으로 되돌아간다.
+  const accentSpeaker = currentLine?.speaker ?? chapter.pointOfView;
   const accentClass =
-    chapter.pointOfView !== "ensemble" ? ` accent-${chapter.pointOfView.replace(/_/g, "-")}` : "";
+    accentSpeaker && accentSpeaker !== "ensemble" ? ` accent-${accentSpeaker.replace(/_/g, "-")}` : "";
 
   function goToScene(chapterId: string, sceneId: string) {
     setSave((current) => ({ ...current, progress: { chapterId, sceneId } }));
