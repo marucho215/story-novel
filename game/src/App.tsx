@@ -34,6 +34,9 @@ function resolveSave(save: GameSave | null): GameSave {
 
 export default function App() {
   const [save, setSave] = useState<GameSave>(() => resolveSave(loadGame()));
+  // 지금 씬에서 몇 번째 줄까지 왔는지는 "화면 연출" 상태라 세이브 데이터에는 넣지 않는다.
+  // 다시 불러왔을 때 씬 맨 처음부터 다시 보여줘도 서사 진행에는 문제가 없기 때문이다.
+  const [lineIndex, setLineIndex] = useState(0);
 
   useEffect(() => {
     saveGame(save);
@@ -43,6 +46,12 @@ export default function App() {
   const scene = getScene(chapter, save.progress.sceneId);
   const visibleChoices = getVisibleChoices(scene, save.story);
 
+  const isLastLine = lineIndex >= scene.lines.length - 1;
+  const currentLine = scene.lines[lineIndex];
+  const showChoices = isLastLine && visibleChoices.length > 0;
+  const isChapterEnd = isLastLine && !scene.next && visibleChoices.length === 0;
+  const canAdvance = !isLastLine || (!!scene.next && visibleChoices.length === 0);
+
   function handleChoose(choice: Choice) {
     const { state, nextSceneId } = applyChoice(
       save.story,
@@ -51,18 +60,24 @@ export default function App() {
       choice,
     );
     setSave({ story: state, progress: { chapterId: chapter.id, sceneId: nextSceneId } });
+    setLineIndex(0);
   }
 
-  function handleContinue() {
-    if (!scene.next) return;
-    setSave({ ...save, progress: { chapterId: chapter.id, sceneId: scene.next } });
+  function handleAdvance() {
+    if (!isLastLine) {
+      setLineIndex(lineIndex + 1);
+      return;
+    }
+    if (scene.next) {
+      setSave({ ...save, progress: { chapterId: chapter.id, sceneId: scene.next } });
+      setLineIndex(0);
+    }
   }
 
   function handleRestart() {
     setSave(createNewGame());
+    setLineIndex(0);
   }
-
-  const isChapterEnd = !scene.next && visibleChoices.length === 0;
 
   return (
     <div className="game-screen">
@@ -73,15 +88,9 @@ export default function App() {
         </button>
       </header>
 
-      <DialogueBox lines={scene.lines} />
+      <DialogueBox line={currentLine} onAdvance={canAdvance ? handleAdvance : undefined} />
 
-      {visibleChoices.length > 0 && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
-
-      {!isChapterEnd && visibleChoices.length === 0 && (
-        <button className="continue-button" onClick={handleContinue}>
-          다음
-        </button>
-      )}
+      {showChoices && <ChoiceList choices={visibleChoices} onChoose={handleChoose} />}
 
       {isChapterEnd && <p className="chapter-end">— 옮겨 적은 장면은 여기까지입니다 —</p>}
 

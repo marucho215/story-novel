@@ -52,13 +52,40 @@ body {
 }
 
 .dialogue-box {
+  position: relative;
   background: var(--panel-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
+  min-height: 140px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+}
+
+.dialogue-box--advanceable {
+  cursor: pointer;
+}
+
+.dialogue-box--advanceable:hover {
+  border-color: var(--accent);
+}
+
+.advance-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+  animation: advance-hint-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes advance-hint-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .line--narration {
@@ -70,8 +97,7 @@ body {
   margin-right: 8px;
 }
 
-.choice-list,
-.continue-button-row {
+.choice-list {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -79,7 +105,6 @@ body {
 }
 
 .choice-button,
-.continue-button,
 .restart-button {
   font: inherit;
   padding: 12px 16px;
@@ -92,14 +117,8 @@ body {
 }
 
 .choice-button:hover,
-.continue-button:hover,
 .restart-button:hover {
   border-color: var(--accent);
-}
-
-.continue-button {
-  margin-top: 20px;
-  text-align: center;
 }
 
 .restart-button {
