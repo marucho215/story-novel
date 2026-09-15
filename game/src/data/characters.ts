@@ -15,6 +15,9 @@ export const CHARACTERS: Character[] = [
   { id: "magun_a", displayName: "마근아" },
   { id: "hikudo", displayName: "세이야 히쿠도" },
   { id: "toske", displayName: "세이야 토스케" },
+  { id: "staff", displayName: "교직원" },
+  { id: "toume_suashi", displayName: "토우메 스아시" },
+  { id: "jegal_nahui", displayName: "제갈 나희" },
   { id: "jegal_nahui", displayName: "제갈 나희" },
 ];
 
