@@ -8,10 +8,13 @@ export function ChoiceList({
   onChoose: (choice: Choice) => void;
 }) {
   return (
-    <div className="choice-list">
+    <div className="choice-list" aria-label="선택지">
       {choices.map((choice) => (
         <button key={choice.id} className="choice-button" onClick={() => onChoose(choice)}>
-          {choice.label}
+          <span className="choice-button__mark" aria-hidden="true">
+            ›
+          </span>
+          <span>{choice.label}</span>
         </button>
       ))}
     </div>
