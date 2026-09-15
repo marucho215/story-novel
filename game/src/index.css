@@ -212,7 +212,7 @@ button {
   white-space: pre-wrap;
   word-break: keep-all;
   overflow-wrap: anywhere;
-  max-width: calc(100% - 132px);
+  max-width: calc(100% - 150px);
   font-size: clamp(16px, 1.75vw, 19px);
   line-height: 1.9;
   letter-spacing: -0.018em;
@@ -319,7 +319,7 @@ button {
   }
 
   .line {
-    max-width: calc(100% - 82px);
+    max-width: calc(100% - 108px);
   }
 
   .choice-list {
@@ -396,27 +396,29 @@ button {
   border-left-color: var(--char-accent, var(--accent));
 }
 
-/* 화자 심볼 — 배지가 아니라 대사창 오른쪽에 흐릿하게 깔리는 워터마크.
-   UI 버튼처럼 보이면 안 되므로 배경·테두리·그림자를 일절 넣지 않는다. */
+/* 화자 심볼 — 배지가 아니라 대사창 오른쪽 중간을 채우는 큼직한 워터마크.
+   UI 버튼처럼 보이면 안 되므로 배경·테두리·그림자를 일절 넣지 않는다.
+   오른쪽으로 살짝 흘러나가도 괜찮다 — dialogue-box에 overflow: hidden을
+   안 걸어둔 것도 이 여백 때문이다. */
 .speaker-symbol {
   position: absolute;
   z-index: 0;
-  top: 12px;
-  right: 34px;
-  width: 132px;
-  height: 132px;
+  top: 50%;
+  right: -22px;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
   object-fit: contain;
-  opacity: 0.11;
-  filter: saturate(0.72) brightness(1.08);
+  opacity: 0.32;
+  filter: saturate(0.85);
   pointer-events: none;
   user-select: none;
 }
 
 @media (max-width: 640px) {
   .speaker-symbol {
-    width: 92px;
-    height: 92px;
-    top: 12px;
-    right: 16px;
+    width: 136px;
+    height: 136px;
+    right: -12px;
   }
 }
