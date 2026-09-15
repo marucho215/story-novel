@@ -98,7 +98,14 @@ export default function App() {
   // 반응하면 클릭 없이는 쓸모가 없으니, 페이지 전체에서 듣는다. 다만 버튼이나
   // 디버그 패널의 <summary> 등 자체적으로 엔터/스페이스에 반응하는 요소 위에서는
   // 끼어들지 않는다 — 안 그러면 선택지를 고르면서 동시에 대사도 넘어가 버린다.
+  //
+  // 선택지가 여러 개 떠 있을 때는 이 리스너를 아예 꺼둔다. 골라야 할 선택지가
+  // 있는 순간에는 반드시 마우스로 직접 클릭하게 하려는 것이라, canAdvance가
+  // 우연히 true가 되는 경우에도 여기서 막아야 한다. 버튼 자체의 엔터/스페이스
+  // 활성화는 ChoiceList에서 따로 막는다.
   useEffect(() => {
+    if (showChoices) return;
+
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key !== "Enter" && event.key !== " ") return;
       if (!canAdvance) return;
